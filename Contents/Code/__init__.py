@@ -1,5 +1,5 @@
 PLUGIN_PREFIX           = "/video/Cobayes"
-PLUGIN_ID               = "com.plexapp.plugins.Dominique"
+PLUGIN_ID               = "com.plexapp.plugins.Cobayes"
 PLUGIN_REVISION         = 0.5
 PLUGIN_UPDATES_ENABLED  = True
 CACHE_INTERVAL = 3600 * 2
@@ -18,10 +18,8 @@ def Start():
 def ListeCategories():
 	oc = ObjectContainer(replace_parent=True)
 
-
         url="http://gdata.youtube.com/feeds/api/playlists/PLEY1NNPhwXGWnd8uNPY3RVHPyNDlXnOwo/?alt=json&max-results=50"
         oc.add( DirectoryObject(key=Callback(Video,url=url),title="Emissions",thumb=R('icon-videos.png')))
-
 
         url="http://gdata.youtube.com/feeds/api/playlists/PLEY1NNPhwXGXqZCIg4bWqUH_dbYbecNPO/?alt=json&max-results=50"
         oc.add( DirectoryObject(key=Callback(Video,url=url),title="Defis",thumb=R('icon-channels.png')))
