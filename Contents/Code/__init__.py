@@ -15,20 +15,8 @@ def Start():
 
 
 #Root categories
-def ListeCategories():
-	oc = ObjectContainer(replace_parent=True)
 
-        url="http://gdata.youtube.com/feeds/api/playlists/PLEY1NNPhwXGWnd8uNPY3RVHPyNDlXnOwo/?alt=json&max-results=50"
-        oc.add( DirectoryObject(key=Callback(Video,url=url),title="Emissions",thumb=R('icon-videos.png')))
-
-        url="http://gdata.youtube.com/feeds/api/playlists/PLEY1NNPhwXGXqZCIg4bWqUH_dbYbecNPO/?alt=json&max-results=50"
-        oc.add( DirectoryObject(key=Callback(Video,url=url),title="Defis",thumb=R('icon-channels.png')))
-
-        Log(oc) 
-
-#        oc.add(dd)
-	return oc
-
+@route('/video/Cobayes/Video', url=str)
 def Video(url):
     data=JSON.ObjectFromURL(url)
     oc=ObjectContainer()
@@ -40,4 +28,15 @@ def Video(url):
         dd=MovieObject(url=url,title=title,summary=summary,thumb=thumb)
         oc.add(dd)
     return oc
+
+
+def ListeCategories():
+	oc = ObjectContainer(replace_parent=True)
+
+        url="http://gdata.youtube.com/feeds/api/playlists/PLEY1NNPhwXGWnd8uNPY3RVHPyNDlXnOwo/?alt=json&max-results=50"
+        oc.add( DirectoryObject(key=Callback(Video,url=url),title="Emissions",thumb=R('icon-videos.png')))
+
+        url="http://gdata.youtube.com/feeds/api/playlists/PLEY1NNPhwXGXqZCIg4bWqUH_dbYbecNPO/?alt=json&max-results=50"
+        oc.add( DirectoryObject(key=Callback(Video,url=url),title="Defis",thumb=R('icon-channels.png')))
+	return oc
 
