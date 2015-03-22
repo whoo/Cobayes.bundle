@@ -77,6 +77,7 @@ def ListeCategories():
         url=addparam(url,'type=video')
         url=addparam(url,'key=%s'%key)
         url=addparam(url,'maxResults=50')
+        url=addparam(url,'order=date')
         oc.add( DirectoryObject(key=Callback(SearchAllV,url=url),title='All Cobayes',summary=L('Emission des cobayes'),thumb=R('icon-videos.png')))
 
         url=playlist
@@ -85,7 +86,7 @@ def ListeCategories():
         url=addparam(url,'key=%s'%key)
         url=addparam(url,'maxResults=50')
         
-        oc.add(DirectoryObject(key=Callback(SearchAllP,url=url),title='Sorcier',summary=L('On n est pas que des sorciers'),thumb=R('icon-related.png')))
+        oc.add(DirectoryObject(key=Callback(SearchAllP,url=url),title='On n\'est pas des sorciers',summary=L('On n est pas que des sorciers'),thumb=R('icon-related.png')))
         
         
         return oc
