@@ -20,9 +20,9 @@ def Start():
 	Plugin.AddPrefixHandler("/video/Cobayes", ListeCategories,"Cobaye", "logo.jpg", "logo-On-nest-pas-que-des-cobayes-600x340.jpg")
 	ObjectContainer.title1    = L('Video Youtube')
 	ObjectContainer.art       = R("logo-On-nest-pas-que-des-cobayes-600x340.jpg")
-        Plugin.AddViewGroup("Details", viewMode="InfoList", mediaType="items")
+#        Plugin.AddViewGroup("Details", viewMode="InfoList", mediaType="items")
 #        Plugin.AddViewGroup("List", viewMode="List", mediaType="items")
-        ObjectContainer.viewgroup = 'Details'
+#        ObjectContainer.viewgroup = 'Details'
 
 
 #Root categories
@@ -33,7 +33,8 @@ def addparam(url,param):
 
 
 
-@route("/video/Cobayes/Video/<info>")
+#@route("/video/Cobayes/Video/<info>")
+@route(PLUGIN_PREFIX+"/Video")
 def Video(info):
         Log(info)
         info=JSON.ObjectFromString(info)
@@ -61,11 +62,11 @@ def Video(info):
 def ListeCategories():
         oc = ObjectContainer()
         
-        PlayLists=[
-        {'Playlist':'PLEY1NNPhwXGWnd8uNPY3RVHPyNDlXnOwo','name':'Emission','thumb':'icon-videos.png' },
-        {'Playlist':'PLEY1NNPhwXGXqZCIg4bWqUH_dbYbecNPO','name':'Defis','thumb':'icon-channels.png'},
-        {'Playlist':'PLh-qVJTuss12drO62KwC5yr6zdXDJEAng','name':'C est pas sorcier','thumb':'icon-channels.png'}]
-        
+#        PlayLists=[
+#        {'Playlist':'PLEY1NNPhwXGWnd8uNPY3RVHPyNDlXnOwo','name':'Emission','thumb':'icon-videos.png' },
+#        {'Playlist':'PLEY1NNPhwXGXqZCIg4bWqUH_dbYbecNPO','name':'Defis','thumb':'icon-channels.png'},
+#        {'Playlist':'PLh-qVJTuss12drO62KwC5yr6zdXDJEAng','name':'C est pas sorcier','thumb':'icon-channels.png'}]
+#        
 #        for a in PlayLists:
 #                oc.add( DirectoryObject(key=Callback(Video,playlist=a['Playlist']),title=a['name'],summary='',thumb=R(a['thumb'])))
 
@@ -76,7 +77,7 @@ def ListeCategories():
         url=addparam(url,'type=video')
         url=addparam(url,'key=%s'%key)
         url=addparam(url,'maxResults=50')
-        oc.add( DirectoryObject(key=Callback(SearchAllV,url=url),title='All Cobayes',summary='',thumb=R('icon-videos.png')))
+        oc.add( DirectoryObject(key=Callback(SearchAllV,url=url),title='All Cobayes',summary=L('Emission des cobayes'),thumb=R('icon-videos.png')))
 
         url=playlist
         url=addparam(url,'part=snippet')
@@ -84,13 +85,13 @@ def ListeCategories():
         url=addparam(url,'key=%s'%key)
         url=addparam(url,'maxResults=50')
         
-        oc.add(DirectoryObject(key=Callback(SearchAllP,url=url),title='Sorcier',summary='',thumb=R('icon-related.png')))
+        oc.add(DirectoryObject(key=Callback(SearchAllP,url=url),title='Sorcier',summary=L('On n est pas que des sorciers'),thumb=R('icon-related.png')))
         
         
         return oc
 
 
-@route('/video/Cobayes/searchAllP/<url>')
+#@route('/video/Cobayes/searchAllP/<url>')
 def SearchAllP(url):
         oc=ObjectContainer(title2="C est pas Sorcier")
         error=None
@@ -118,7 +119,7 @@ def SearchAllP(url):
 
 
 
-@route("/video/Cobayes/searchAllV/<url>")
+#@route("/video/Cobayes/searchAllV/<url>")
 def SearchAllV(url):
         oc=ObjectContainer(title2="Les cobayes")
         
