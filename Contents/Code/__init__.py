@@ -18,7 +18,7 @@ key="AIzaSyDq0YgvkD2-xo88kl073MK5ua_3935ROC4"
 
 def Start():
 	Plugin.AddPrefixHandler("/video/Cobayes", ListeCategories,"Cobaye", "logo.jpg", "logo-On-nest-pas-que-des-cobayes-600x340.jpg")
-	ObjectContainer.title1    = L('Video Youtube')
+	ObjectContainer.title1    = L('Les Video Youtube')
 	ObjectContainer.art       = R("logo-On-nest-pas-que-des-cobayes-600x340.jpg")
 #        Plugin.AddViewGroup("Details", viewMode="InfoList", mediaType="items")
 #        Plugin.AddViewGroup("List", viewMode="List", mediaType="items")
@@ -86,7 +86,15 @@ def ListeCategories():
         url=addparam(url,'key=%s'%key)
         url=addparam(url,'maxResults=50')
         
-        oc.add(DirectoryObject(key=Callback(SearchAllP,url=url),title='C\'est pas sorcier',summary=L('On n est pas que des sorciers'),thumb=R('icon-related.png')))
+        oc.add(DirectoryObject(key=Callback(SearchAllP,url=url),title='C\'est pas sorcier',summary=L('C est pas sorciers'),thumb=R('icon-related.png')))
+
+
+        url=playlist
+        url=addparam(url,'part=snippet')
+        url=addparam(url,'channelId=UCoPZ-VcTFfkb-VlhsfzYp0Q')
+        url=addparam(url,'key=%s'%key)
+        url=addparam(url,'maxResults=50')
+        oc.add(DirectoryObject(key=Callback(SearchAllP,url=url),title='On n\'est plus des pigeons !',summary=L('On n\'est plus des pigeons !'),thumb=R('icon-related.png')))
         
         
         return oc
